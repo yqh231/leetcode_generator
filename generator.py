@@ -16,8 +16,8 @@ def parse_html(html):
     return title[0].text, question[0]
 
 
-def generator_file(title, content):
-    with open('/home/yqh/leetcode/{}.py'.format(title), mode='w') as file:
+def generator_file(path, title, content):
+    with open('{}/{}.py'.format(path, title), mode='w') as file:
         file.write('"""\n')
         file.write(title)
         file.write(content)
@@ -26,6 +26,7 @@ def generator_file(title, content):
 
 if __name__ == '__main__':
     question_name = sys.argv[1]
+    path = sys.argv[2]
     html = get_html(question_name)
     title, content = parse_html(html)
-    generator_file(title, content)
+    generator_file(path, title, content)
